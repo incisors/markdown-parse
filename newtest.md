@@ -1,2 +1,2 @@
-![image](library.jpg)
+![image][library.jpg]
 [link][linklinklink]
