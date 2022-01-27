@@ -32,6 +32,11 @@ public class MarkdownParse {
         }
         return toReturn;
     }
+
+    //$ javac -cp ".;lib\junit-4.12.jar;lib\hamcrest-core-1.3.jar" MarkdownParseTest.java
+  
+
+    //$ java -cp ".;libs\junit-4.12.jar;libs\hamcrest-core-1.3.jar" MarkdownParseTest
     public static void main(String[] args) throws IOException {
 		Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
