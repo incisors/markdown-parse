@@ -9,41 +9,21 @@ public class MarkdownParse {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then take up to
         // the next )
-        
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
-            
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            if(markdown.indexOf("(") == -1){
-                int openParen = markdown.indexOf("[", nextCloseBracket);
-                int closeParen = markdown.indexOf("]", openParen);
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
-                currentIndex = closeParen + 1;
-            }
-            else{
-                int openParen = markdown.indexOf("(", nextCloseBracket);
-                int closeParen = markdown.indexOf(")", openParen);
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
-                currentIndex = closeParen + 1;
-            }
-            
-            
+            int openParen = markdown.indexOf("(", nextCloseBracket);
+            int closeParen = markdown.indexOf(")", openParen);
+            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            currentIndex = closeParen + 1;
         }
         return toReturn;
     }
-
-    //$ javac -cp “.;lib\junit-4.13.2.jar;lib\hamcrest-core-1.3.jar” MarkdownParseTest.java
-
-  
-
-    //$ java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore MarkdownParseTest
-
     public static void main(String[] args) throws IOException {
 		Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
         ArrayList<String> links = getLinks(contents);
         System.out.println(links);
-        
     }
 }
